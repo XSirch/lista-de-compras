@@ -218,7 +218,7 @@ O sistema v2.0 permite **otimizar custos** escolhendo o modo adequado:
 
 | Modo                     | OpenAI API                | Perplexity API | Total Estimado* |
 | ------------------------ | ------------------------- | -------------- | --------------- |
-| **Fluxo Completo** | ~$0.02/item | ~$0.01/item | ~$0.03/item    |                 |
+| **Fluxo Completo** | ~$0.01/item | ~$0.01/item | ~$0.02/item    |                 |
 | **Busca Direta**   | $0.00 | ~$0.01/item       | ~$0.01/item    |                 |
 
 *_Estimativa para listas de 20 itens_
@@ -269,7 +269,7 @@ O sistema v2.0 permite **otimizar custos** escolhendo o modo adequado:
 
 ### 📊 **ROI da Otimização:**
 
-- **Investimento inicial**: Otimização por IA (~$0.02/item)
+- **Investimento inicial**: Otimização por IA (~$0.01/item)
 - **Economia futura**: Reutilização da lista otimizada
 - **Break-even**: ~2-3 execuções da mesma lista
 
@@ -373,7 +373,7 @@ pip install crewai
 # PERPLEXITY_API_KEY=pplx-...
 
 # Execute o fluxo completo
-python intelligent_price_discovery.py
+python busca_precos_completa.py
 ```
 
 #### ⚡ **Modo 2: Busca Direta** (Economia de Tokens)
@@ -396,7 +396,7 @@ python test_agents.py
 ### 📱 **Exemplo de Execução**
 
 ```bash
-$ python price_discovery.py
+$ python busca_precos_completa.py
 2025-01-14 10:30:15 - INFO - 🚀 Starting Price Discovery System
 2025-01-14 10:30:15 - INFO - 📂 Loading Excel file: lista.xlsx
 2025-01-14 10:30:16 - INFO - 🔢 Processing 20 items...
@@ -536,7 +536,7 @@ python busca_precos_basica.py
 | ------------------------------------ | ---------------- | ------------ |
 | **Taxa de Sucesso**            | 40-60%           | 60-80%       |
 | **Qualidade das Descrições** | Manual           | IA Otimizada |
-| **Custo por Execução**       | ~$0.01 / item ~ | ~$0.03 / item ~  |
+| **Custo por Execução**       | ~$0.01 / item ~ | ~$0.02 / item ~  |
 | **Tempo de Setup**             | 2 min            | 5 min        |
 | **Manutenção de Listas**     | Manual           | Automática  |
 
@@ -734,6 +734,6 @@ Este projeto está licenciado sob a **MIT License** - veja o arquivo [LICENSE](L
 
 **⭐ Se este projeto foi útil, considere dar uma estrela!**
 
-[![GitHub stars](https://img.shields.io/github/stars/username/price-discovery-system.svg?style=social&label=Star)](https://github.com/username/price-discovery-system)
+[![GitHub stars](https://img.shields.io/github/stars/username/price-discovery-system.svg?style=social&label=Star)](https://github.com/XSirch/lista-de-compras)
 
 </div>
