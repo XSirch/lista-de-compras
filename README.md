@@ -52,7 +52,7 @@ Sistema de busca de preços para produtos brasileiros com **otimização por IA*
 ## 📋 Requisitos
 
 - Python 3.8+
-- Arquivo Excel: `lista.xlsx`
+- Arquivo Excel com lista de itens (coluna "Item")
 - Conexão com internet
 
 ## 🚀 Início Rápido
@@ -60,20 +60,38 @@ Sistema de busca de preços para produtos brasileiros com **otimização por IA*
 ```bash
 # 1. Clone o repositório
 git clone https://github.com/XSirch/lista-de-compras
-cd price-discovery-system
+cd lista-de-compras
 
-# 2. Instale as dependências
+# 2. Crie um ambiente virtual (recomendado)
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+# ou
+venv\Scripts\activate     # Windows
+
+# 3. Instale as dependências
 pip install -r requirements.txt
 
-# 3. Configure sua API key
+# 4. Configure suas API keys
 cp .env.example .env
-# Edite o arquivo .env com sua chave da Perplexity AI
+# Edite o arquivo .env com suas chaves da Perplexity AI e OpenAI
 
-# 4. Execute o sistema
-python price_discovery.py
+# 5. Prepare seu arquivo Excel
+# Crie um arquivo Excel com uma coluna "Item" contendo as descrições dos produtos
+# Exemplo: lista.xlsx, minha_lista.xlsx, etc.
+
+# 6. Execute o sistema
+python busca_precos_completa.py
+
+# Opções avançadas:
+# Forçar reprocessamento (ignorar cache)
+python busca_precos_completa.py --force-reprocess
+
+# Usar arquivo diferente
+python busca_precos_completa.py --input-file minha_lista.xlsx
 ```
 
 > ⏱️ **Tempo total**: ~3 minutos para configuração + tempo de processamento
+> 💰 **Cache inteligente**: Economiza tokens reutilizando resultados anteriores
 
 ---
 
@@ -82,6 +100,39 @@ python price_discovery.py
 ### 🤖 **Sistema Inteligente com CrewAI + Perplexity AI**
 
 Arquitetura híbrida que combina **otimização por IA** com **busca inteligente**:
+
+### 💾 **Sistema de Cache Inteligente**
+
+O sistema agora inclui cache automático para economizar tokens e tempo:
+
+- **Cache de Pré-processamento**: Reutiliza itens otimizados se o arquivo de entrada não mudou
+- **Cache de Preços**: Evita refazer buscas de preços para os mesmos itens
+- **Nomes baseados em Hash**: Arquivos são nomeados com base no conteúdo, garantindo consistência
+- **Opção de Força**: Use `--force-reprocess` para ignorar cache quando necessário
+
+**Benefícios:**
+- 🚀 **Execução mais rápida** em execuções subsequentes
+- 💰 **Economia de tokens** da OpenAI e Perplexity
+- 🔄 **Reutilização inteligente** de resultados anteriores
+
+## 📁 Estrutura do Projeto
+
+```
+lista-de-compras/
+├── 📄 busca_precos_completa.py    # Sistema principal integrado
+├── 📄 busca_precos_basica.py      # Motor de descoberta de preços
+├── 📄 preprocessamento.py         # Pré-processamento com CrewAI
+├── 📄 requirements.txt            # Dependências Python
+├── 📄 .env.example               # Exemplo de configuração
+├── 📄 README.md                  # Documentação principal
+├── 📄 QUICK_START.md             # Guia rápido
+└── 📄 .gitignore                 # Arquivos ignorados pelo Git
+```
+
+**Arquivos gerados (ignorados pelo Git):**
+- `Preprocessed_Items_*.xlsx` - Cache de pré-processamento
+- `Price_Results_*.xlsx` - Cache de resultados de preços
+- `Intelligent_Price_Discovery_Results_*.xlsx` - Relatórios finais
 
 ```
 🤖 CrewAI Agents (Pré-processamento)
@@ -288,9 +339,9 @@ INPUT_FILE=lista.xlsx
 
 **Formato da Planilha Excel:**
 
-- **Nome do arquivo**: `lista.xlsx` (ou configure no `.env`)
+- **Nome do arquivo**: Qualquer nome (ex: `lista.xlsx`, `produtos.xlsx`)
 - **Coluna obrigatória**: `Item` com descrições dos produtos
-- **Localização**: Mesma pasta do script
+- **Localização**: Mesma pasta do script ou especifique o caminho
 
 **Exemplo de estrutura:**
 

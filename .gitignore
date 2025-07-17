@@ -42,10 +42,21 @@ venv.bak/
 Lista_Compras_Searchable.xlsx
 Lista_Compras_Filtered_Out.xlsx
 Lista_Compras_Enxoval_Agile_Categorizada.xlsx
-lista.xlsx
 Price_Discovery_*.xlsx
-*_Results.xlsx
+*_Results*.xlsx
 *_Report_*.xlsx
+
+# New cache and output files
+Preprocessed_Items_*.xlsx
+Price_Results_*.xlsx
+Intelligent_Price_Discovery_Results_*.xlsx
+Itens_Otimizados_*.xlsx
+Resultado_*.xlsx
+
+# Input files (users should provide their own)
+lista.xlsx
+minha_lista.xlsx
+*.xlsx
 
 # Debug and test files
 test_*.py
